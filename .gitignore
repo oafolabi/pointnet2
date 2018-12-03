@@ -1,0 +1,9 @@
+# so file 
+*.so 
+*.o
+*.obj
+*.lo
+*.slo
+
+# data file
+/data/*
