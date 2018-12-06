@@ -183,9 +183,9 @@ def train():
                     with tf.device('/gpu:%d'%(i)), tf.name_scope('gpu_%d'%(i)) as scope:
                         # Evenly split input data to each GPU
                         pc_batch = tf.slice(pointclouds_pl,
-                            [i*DEVICE_BATCH_SIZE,0,0], [DEVICE_BATCH_SIZE,-1,-1])
+                            [int(i*DEVICE_BATCH_SIZE),0,0], [int(DEVICE_BATCH_SIZE),-1,-1])
                         label_batch = tf.slice(labels_pl,
-                            [i*DEVICE_BATCH_SIZE], [DEVICE_BATCH_SIZE])
+                            [int(i*DEVICE_BATCH_SIZE)], [int(DEVICE_BATCH_SIZE)])
 
                         pred, end_points = MODEL.get_model(pc_batch,
                             is_training=is_training_pl, bn_decay=bn_decay)
